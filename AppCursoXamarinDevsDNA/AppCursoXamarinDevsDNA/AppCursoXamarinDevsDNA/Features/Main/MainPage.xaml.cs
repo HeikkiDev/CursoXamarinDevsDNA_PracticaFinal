@@ -15,9 +15,11 @@ namespace AppCursoXamarinDevsDNA
 			InitializeComponent();
 		}
 
-        public override void CreateBindings(Action<IDisposable> registerDisposable)
+        public override void CreateBindings(Action<IDisposable> d)
         {
-            base.CreateBindings(registerDisposable);
+            base.CreateBindings(d);
+
+            d(this.BindCommand(ViewModel, vm => vm.NavigateToDetailCommand, v => v.BtnPushView));
 
             //TODO Bindings
         }

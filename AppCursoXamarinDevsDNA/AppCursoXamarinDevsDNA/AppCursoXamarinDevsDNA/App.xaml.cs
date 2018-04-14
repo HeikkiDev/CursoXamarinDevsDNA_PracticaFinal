@@ -1,4 +1,5 @@
 ﻿using AppCursoXamarinDevsDNA.Features.Main;
+using AppCursoXamarinDevsDNA.Services.NavigationService;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,24 @@ namespace AppCursoXamarinDevsDNA
 			InitializeComponent();
 
             RegisterViewModels();
+            RegisterServices();
 
-			MainPage = (ContentPage)Splat.Locator.Current.GetService(typeof(MainPageViewModel));
+            MainPage = new NavigationPage(
+                    (ContentPage)Splat.Locator.Current.GetService(typeof(MainPageViewModel))
+                );
         }
 
         /// <summary>
-        /// Registra Views y sus respectivos ViewModels en Splat, y los 
-        /// busca automáticamente mediante Reflection
+        /// Registro de servicios
+        /// </summary>
+        private void RegisterServices()
+        {
+            Splat.Locator.CurrentMutable.Register(() => new NavigationService(), typeof(INavigationService));
+        }
+
+        /// <summary>
+        /// Registro de Views y sus respectivos ViewModels en Splat, 
+        /// y los busca automáticamente mediante Reflection
         /// </summary>
         public void RegisterViewModels()
         {

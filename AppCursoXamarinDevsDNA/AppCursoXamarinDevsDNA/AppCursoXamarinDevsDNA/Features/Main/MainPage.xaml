@@ -7,8 +7,8 @@
              x:TypeArguments="main:MainPageViewModel"
              x:Class="AppCursoXamarinDevsDNA.MainPage">
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <Grid>
+        <Button x:Name="BtnPushView" Text="Navegar Push Detail" VerticalOptions="Center" HorizontalOptions="Center"></Button>
+    </Grid>
 
 </base:BaseReactiveContentPage>
