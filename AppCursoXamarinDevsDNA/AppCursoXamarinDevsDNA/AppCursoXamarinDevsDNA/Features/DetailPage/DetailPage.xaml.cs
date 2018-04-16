@@ -12,5 +12,12 @@ namespace AppCursoXamarinDevsDNA.Features.DetailPage
         {
 			InitializeComponent ();
 		}
+
+        public override void CreateBindings(Action<IDisposable> d)
+        {
+            base.CreateBindings(d);
+
+            d(this.Bind(ViewModel, vm => vm.LabelText, v => v.labelTexto.Text));
+        }
     }
 }

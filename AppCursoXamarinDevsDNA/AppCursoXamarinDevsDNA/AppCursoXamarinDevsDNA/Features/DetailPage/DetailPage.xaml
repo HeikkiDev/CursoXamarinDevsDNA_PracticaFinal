@@ -9,7 +9,7 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Detail Page!"
+            <Label x:Name="labelTexto" Text="Welcome to Detail Page!"
                 VerticalOptions="Start" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

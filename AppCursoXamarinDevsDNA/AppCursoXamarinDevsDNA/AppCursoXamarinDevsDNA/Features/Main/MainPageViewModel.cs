@@ -1,10 +1,7 @@
 ﻿using AppCursoXamarinDevsDNA.Base;
+using AppCursoXamarinDevsDNA.Services.NavigationService;
 using ReactiveUI;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace AppCursoXamarinDevsDNA.Features.Main
 {
@@ -20,8 +17,10 @@ namespace AppCursoXamarinDevsDNA.Features.Main
 
         private async Task NavigateToDetailAsync()
         {
-            //var page = new DetailPage.DetailPage();
-            var page = (ContentPage)Splat.Locator.Current.GetService(typeof(DetailPage.DetailPageViewModel));
+            NavigationParameters navigationParameters = new NavigationParameters();
+            navigationParameters.Add("detail-text", "Texto asignado desde Load!!");
+
+            var page = new DetailPage.DetailPage(navigationParameters);
             await NavigationService.PushTo(page);
         }
     }
