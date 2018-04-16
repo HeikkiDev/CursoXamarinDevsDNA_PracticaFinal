@@ -20,9 +20,7 @@ namespace AppCursoXamarinDevsDNA
             RegisterViewModels();
             RegisterServices();
 
-            MainPage = new NavigationPage(
-                    (ContentPage)Splat.Locator.Current.GetService(typeof(MainPageViewModel))
-                );
+            MainPage = new NavigationPage(new MainPage());
         }
 
         /// <summary>

@@ -1,8 +1,6 @@
-﻿using ReactiveUI;
+﻿using AppCursoXamarinDevsDNA.Services.NavigationService;
+using ReactiveUI;
 using System;
-using System.Reactive.Linq;
-using System.Windows.Input;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppCursoXamarinDevsDNA
@@ -10,7 +8,7 @@ namespace AppCursoXamarinDevsDNA
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage
 	{
-		public MainPage()
+		public MainPage(NavigationParameters navigationParameters = null) : base(navigationParameters)
 		{
 			InitializeComponent();
 		}

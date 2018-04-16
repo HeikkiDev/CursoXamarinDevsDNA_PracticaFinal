@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using AppCursoXamarinDevsDNA.Services.NavigationService;
+using System;
 using Xamarin.Forms.Xaml;
+using ReactiveUI;
 
 namespace AppCursoXamarinDevsDNA.Features.DetailPage
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetailPage
 	{
-		public DetailPage ()
-		{
+		public DetailPage (NavigationParameters navigationParameters = null) : base(navigationParameters)
+        {
 			InitializeComponent ();
 		}
-	}
+    }
 }

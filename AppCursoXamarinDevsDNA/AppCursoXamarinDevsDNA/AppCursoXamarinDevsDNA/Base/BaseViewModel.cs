@@ -16,5 +16,10 @@ namespace AppCursoXamarinDevsDNA.Base
         {
             _navigationService = navigationService ?? Locator.Current.GetService<INavigationService>();
         }
+
+        public virtual void Load(NavigationParameters navigationParameters)
+        {
+
+        }
     }
 }
