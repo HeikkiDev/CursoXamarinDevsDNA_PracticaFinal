@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
 using Xamarin.Forms;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace AppCursoXamarinDevsDNA
 {
@@ -58,8 +60,13 @@ namespace AppCursoXamarinDevsDNA
 
         protected override void OnStart ()
 		{
-			// Handle when your app starts
-		}
+            // Analytics and Crashes for Android and iOS with AppCenter
+            AppCenter.Start(
+                "android=1d582377-3d4f-47d6-a4dc-9afd97550639;"
+                + "ios=70488661-d6e9-4988-9796-e199c4bd42bd", 
+                typeof(Analytics), 
+                typeof(Crashes));
+        }
 
 		protected override void OnSleep ()
 		{
