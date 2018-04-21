@@ -13,6 +13,11 @@ namespace AppCursoXamarinDevsDNA.Services.NavigationService
 
         }
 
+        public void SetMainPage(Page page)
+        {
+            Application.Current.MainPage = new NavigationPage(page);
+        }
+
         public async Task PushTo(Page page)
         {
             await Application.Current.MainPage.Navigation.PushAsync(page);
