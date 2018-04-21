@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace AppCursoXamarinDevsDNA.Features.DetailPage
 {
+    public static class NavigationKeys
+    {
+        public const string DETAIL_TEXT = "detail-text";
+    }
+
     public class DetailPageViewModel : BaseViewModel
     {
         private string _labelText = "";
@@ -25,9 +30,9 @@ namespace AppCursoXamarinDevsDNA.Features.DetailPage
 
             if (navigationParameters == null) return;
 
-            if (navigationParameters.ContainsKey("detail-text"))
+            if (navigationParameters.ContainsKey(NavigationKeys.DETAIL_TEXT))
             {
-                LabelText = navigationParameters["detail-text"].ToString();
+                LabelText = navigationParameters[NavigationKeys.DETAIL_TEXT].ToString();
             }
         }
     }

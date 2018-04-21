@@ -18,7 +18,7 @@ namespace AppCursoXamarinDevsDNA.Features.Main
         private async Task NavigateToDetailAsync()
         {
             NavigationParameters navigationParameters = new NavigationParameters();
-            navigationParameters.Add("detail-text", "Texto asignado desde Load!!");
+            navigationParameters.Add(DetailPage.NavigationKeys.DETAIL_TEXT, "Texto asignado desde Load!!");
 
             var page = new DetailPage.DetailPage(navigationParameters);
             await NavigationService.PushTo(page);
