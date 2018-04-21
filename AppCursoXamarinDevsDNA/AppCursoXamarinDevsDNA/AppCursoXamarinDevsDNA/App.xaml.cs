@@ -1,19 +1,19 @@
-﻿using AppCursoXamarinDevsDNA.Features.Main;
-using AppCursoXamarinDevsDNA.Services.NavigationService;
-using ReactiveUI;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Xamarin.Forms;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using AppCursoXamarinDevsDNA.Services.NavigationService;
+using AppCursoXamarinDevsDNA.Services.Analytics;
+using AppCursoXamarinDevsDNA.Services.AppProperties;
+using ReactiveUI;
+using Splat;
 
 namespace AppCursoXamarinDevsDNA
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
 		public App ()
 		{
@@ -22,7 +22,16 @@ namespace AppCursoXamarinDevsDNA
             RegisterViewModels();
             RegisterServices();
 
-            MainPage = new NavigationPage(new MainPage());
+            var appPropertiesService = Splat.Locator.Current.GetService<IAppPropertiesService>();
+
+            if (appPropertiesService.ContainsKey("user_login_token"))
+            {
+                MainPage = new NavigationPage(new MainPage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new Features.Login.LoginPage());
+            }
         }
 
         /// <summary>
@@ -31,6 +40,8 @@ namespace AppCursoXamarinDevsDNA
         private void RegisterServices()
         {
             Splat.Locator.CurrentMutable.Register(() => new NavigationService(), typeof(INavigationService));
+            Splat.Locator.CurrentMutable.Register(() => new AnalyticsService(), typeof(IAnalyticsService));
+            Splat.Locator.CurrentMutable.Register(() => new AppPropertiesService(), typeof(IAppPropertiesService));
         }
 
         /// <summary>
