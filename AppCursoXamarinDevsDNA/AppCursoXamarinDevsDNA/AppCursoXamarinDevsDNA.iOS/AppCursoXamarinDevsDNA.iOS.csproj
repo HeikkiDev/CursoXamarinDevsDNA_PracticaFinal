@@ -148,5 +148,14 @@
       <Name>AppCursoXamarinDevsDNA</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\close_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ok_thumbs_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\search.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
