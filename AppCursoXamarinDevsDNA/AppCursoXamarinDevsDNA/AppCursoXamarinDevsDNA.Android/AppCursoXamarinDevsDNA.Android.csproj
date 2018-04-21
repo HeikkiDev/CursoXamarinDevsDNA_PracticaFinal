@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="CustomRenderers\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderers\RoundedButtonRenderer.cs" />
+    <Compile Include="CustomRenderers\SelectPlaceMapRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
