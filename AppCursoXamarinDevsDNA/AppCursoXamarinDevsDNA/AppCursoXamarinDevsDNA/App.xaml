@@ -5,6 +5,32 @@
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="FontSize">
+                    <OnPlatform x:TypeArguments="x:Double" Android="16" iOS="18" />
+                </Setter>
+                <Setter Property="BorderRadius">
+                    <OnPlatform x:TypeArguments="x:Int32" Android="30" iOS="22" />
+                </Setter>
+                <Setter Property="BorderWidth" Value="0.2" />
+                <Setter Property="BorderColor" Value="#1e3896" />   
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#6495ed" />
+            </Style>
+
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="FontSize">
+                    <OnPlatform x:TypeArguments="x:Double" Android="14" iOS="16" />
+                </Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin">
+                    <OnPlatform x:TypeArguments="Thickness" Android="4,0,4,0" iOS="4,5,4,5" />
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
 
 	</Application.Resources>
 </Application>
