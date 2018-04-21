@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseReactiveContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:AppCursoXamarinDevsDNA.Base"
+             xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+             xmlns:custom="clr-namespace:AppCursoXamarinDevsDNA.CustomControls"
+             xmlns:behaviors="clr-namespace:AppCursoXamarinDevsDNA.Behaviors"
+             xmlns:login="clr-namespace:AppCursoXamarinDevsDNA.Features.Login"
+             x:TypeArguments="login:LoginPageViewModel"
+             x:Class="AppCursoXamarinDevsDNA.Features.Login.LoginPage"
+             Title="Login">
+
+    <base:BaseReactiveContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelWrongUserOrPassStyle" TargetType="Label">
+                <Setter Property="FontSize">
+                    <OnPlatform x:TypeArguments="x:Double" Android="8" iOS="10" />
+                </Setter>
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="XAlign" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </base:BaseReactiveContentPage.Resources>
+
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutBounds="0.5,0.5,1,-1"  AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <custom:CustomEntry x:Name="entryUser" Grid.Row="0" Grid.Column="0"  Placeholder="Usuario" Style="{StaticResource entryStyle}">
+                <Entry.Behaviors>
+                    <behaviors:IsNotNullOrEmptyBehavior />
+                </Entry.Behaviors>
+            </custom:CustomEntry>
+
+            <custom:CustomEntry x:Name="entryPassword" Grid.Row="1" Grid.Column="0"  Placeholder="Password" Style="{StaticResource entryStyle}" IsPassword="True">
+                <Entry.Behaviors>
+                    <behaviors:IsNotNullOrEmptyBehavior />
+                </Entry.Behaviors>
+            </custom:CustomEntry>
+
+            <custom:CustomLabel x:Name="labelWrongUserOrPass" Grid.Row="2" Grid.Column="0" Opacity="0" Text="Usuario o contraseña incorrectos" Style="{StaticResource labelWrongUserOrPassStyle}"/>
+
+            <Button x:Name="buttonLogin" Grid.Row="3" Grid.Column="0" Text="Login" Style="{StaticResource buttonStyle}">
+            </Button>
+
+        </Grid>
+
+        <ActivityIndicator x:Name="activityIndicator" AbsoluteLayout.LayoutBounds="0.5,0.5,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+    </AbsoluteLayout>
+
+</base:BaseReactiveContentPage>
