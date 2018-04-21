@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.AppCursoXamarinDevsDNA">
-	<uses-sdk android:minSdkVersion="15" />
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-  <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.AppCursoXamarinDevsDNA" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="21" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<application android:label="AppCursoXamarinDevsDNA.Android">
-    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCNrgsmZkjQOLqALzI5SCP_q4OPIJrGy2k"/>
-    <meta-data android:name="com.curso.devsdna.GOOGLE_PLACE_AUTOCOMPLETE_URL" android:value="https://maps.googleapis.com/maps/api/place/autocomplete/json"/>
-    <meta-data android:name="com.curso.devsdna.GOOGLE_PLACE_DETAIL_URL" android:value="https://maps.googleapis.com/maps/api/place/details/json"/>
-  </application>
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCNrgsmZkjQOLqALzI5SCP_q4OPIJrGy2k" />
+		<meta-data android:name="com.curso.devsdna.GOOGLE_PLACE_AUTOCOMPLETE_URL" android:value="https://maps.googleapis.com/maps/api/place/autocomplete/json" />
+		<meta-data android:name="com.curso.devsdna.GOOGLE_PLACE_DETAIL_URL" android:value="https://maps.googleapis.com/maps/api/place/details/json" />
+	</application>
 </manifest>

@@ -9,7 +9,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
-namespace AppCursoXamarinDevsDNA.CustomControls.SelectPlaceMap
+namespace AppCursoXamarinDevsDNA.CustomControls
 {
     public class SelectPlaceMap : Map
     {
@@ -24,9 +24,13 @@ namespace AppCursoXamarinDevsDNA.CustomControls.SelectPlaceMap
         private IPlaceAutocompleteService _placeAutocompleteService;
         private App _app => (App)Xamarin.Forms.Application.Current;
 
-        public SelectPlaceMap(IPlaceAutocompleteService placeAutocompleteService = null)
+        public SelectPlaceMap()
         {
-            _placeAutocompleteService = placeAutocompleteService ?? Locator.Current.GetService<IPlaceAutocompleteService>();
+            _placeAutocompleteService = Locator.Current.GetService<IPlaceAutocompleteService>();
+        }
+        public SelectPlaceMap(IPlaceAutocompleteService placeAutocompleteService)
+        {
+            _placeAutocompleteService = placeAutocompleteService;
         }
 
         /// <summary>

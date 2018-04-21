@@ -1,6 +1,7 @@
 ﻿using AppCursoXamarinDevsDNA.Services.NavigationService;
 using ReactiveUI;
 using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppCursoXamarinDevsDNA
@@ -17,9 +18,30 @@ namespace AppCursoXamarinDevsDNA
         {
             base.CreateBindings(d);
 
-            d(this.BindCommand(ViewModel, vm => vm.NavigateToDetailCommand, v => v.BtnPushView));
+            d(this.OneWayBind(ViewModel, vm => vm.CenterPosition, v => v.selectPlaceMap.CenterPosition));
+            d(this.OneWayBind(ViewModel, vm => vm.CurrentPinPlace, v => v.selectPlaceMap.PinPlace));
+            d(this.OneWayBind(ViewModel, vm => vm.CurrentPinPlaceDetails, v => v.selectPlaceMap.PinPlaceDetails));
+            d(this.Bind(ViewModel, vm => vm.SelectionType, v => v.selectPlaceMap.PinSelectionType));
+            d(this.Bind(ViewModel, vm => vm.MapTappedCommand, v => v.selectPlaceMap.MapClickCommand));
 
-            //TODO Bindings
+            d(this.OneWayBind(ViewModel, vm => vm.IsMapSelectionEnable, v => v.frameSearchMode.IsVisible, (isVisible) => !isVisible));
+
+            //TODO: Ver cómo hacer bind al command de este TapGesture desde aquí
+            //var tapGestureRecognizer = new TapGestureRecognizer();
+            //frameSearchMode.GestureRecognizers.Add(tapGestureRecognizer);
+            //d(this.BindCommand(ViewModel, vm => vm.SearchTappedCommand, v => v.frameSearchMode, );
+
+            d(this.OneWayBind(ViewModel, vm => vm.TextSearched, v => v.labelSearchedText.Text));
+
+            d(this.OneWayBind(ViewModel, vm => vm.IsMapSelectionEnable, v => v.frameInMapMode.IsVisible));
+
+            d(this.BindCommand(ViewModel, vm => vm.NavigateToMoviesCommand, v => v.buttonShowMovies));
+            d(this.OneWayBind(ViewModel, vm => vm.IsVisibleShowMoviesButton, v => v.buttonShowMovies.IsVisibleWithBottomAnimation));
+
+            d(this.OneWayBind(ViewModel, vm => vm.IsMapSelectionEnable, v => v.stacklayoutInMapMode.IsVisible));
+
+            d(this.BindCommand(ViewModel, vm => vm.CloseMapSelectionCommand, v => v.buttonCloseInMapMode));
+            d(this.BindCommand(ViewModel, vm => vm.OkMapSelectionCommand, v => v.buttonOkInMapMode));
         }
     }
 }

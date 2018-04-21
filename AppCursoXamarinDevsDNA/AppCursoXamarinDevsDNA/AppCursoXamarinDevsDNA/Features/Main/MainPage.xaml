@@ -3,12 +3,126 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:base="clr-namespace:AppCursoXamarinDevsDNA.Base"
              xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+             xmlns:custom="clr-namespace:AppCursoXamarinDevsDNA.CustomControls"
              xmlns:main="clr-namespace:AppCursoXamarinDevsDNA.Features.Main"
              x:TypeArguments="main:MainPageViewModel"
              x:Class="AppCursoXamarinDevsDNA.MainPage">
 
-    <Grid>
-        <Button x:Name="BtnPushView" Text="Navegar Push Detail" VerticalOptions="Center" HorizontalOptions="Center"></Button>
-    </Grid>
+    <base:BaseReactiveContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelTitleSearchStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="#3C3C3D" />
+            </Style>
+        </ResourceDictionary>
+    </base:BaseReactiveContentPage.Resources>
+
+    <AbsoluteLayout>
+
+        <custom:SelectPlaceMap 
+                x:Name="mapSelectPlace"
+                AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" 
+                AbsoluteLayout.LayoutFlags="All">
+        </custom:SelectPlaceMap>
+
+        <Frame
+                   x:Name="frameSearchMode"
+                   Margin="10,0,10,0"
+                   AbsoluteLayout.LayoutBounds="0.5,0.05,1,-1" 
+                   AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding NavigateToPlaceSearchbarCommand}" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+
+            <StackLayout Spacing="3">
+                <Label Text="Elija un punto alrededor del cual buscaremos los cines más cercanos"
+                           Style="{StaticResource labelTitleSearchStyle}"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="FillAndExpand"/>
+
+                <StackLayout Orientation="Horizontal" Spacing="4">
+                    <Image Grid.Row="0" 
+                            Grid.Column="0"
+                            Margin="0,2,0,0"
+                            Source="search.png"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            HeightRequest="22" 
+                            WidthRequest="22"/>
+
+                    <ContentView Grid.Row="0" 
+                                     Grid.Column="1"
+                                     Padding="4,4,2,4"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="FillAndExpand"
+                                     BackgroundColor="#1A808080">
+                        <Label 
+                               x:Name="labelSearchedText"
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand"
+                               HorizontalTextAlignment="Start"
+                               VerticalTextAlignment="Center"
+                               FontSize="11"/>
+                    </ContentView>
+
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+        <Frame
+                   x:Name="frameInMapMode"
+                   Margin="10,0,10,0"
+                   AbsoluteLayout.LayoutBounds="0.5,0.05,1,-1" 
+                   AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
+
+            <Label Text="Haga click en el mapa para seleccionar una posición"
+                           Style="{StaticResource labelTitleSearchStyle}"
+                           Margin="5"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="FillAndExpand"/>
+        </Frame>
+
+        <!-- Uso de HideWithAnimationButton con IsVisibleWithBottomAnimation:
+                 Se pone la Y a 1.2 para que el control esté fuera de pantalla por abajo.
+                 La posición Y deseada, 0.98, se indica en la propiedad AbsoluteLayoutY.
+                 El movimiento que va a hacer el botón será la resta entre ambos, 0.22.
+                 Para que IsVisibleWithBottomAnimation haga la animación bien las LayoutFlags
+                 deben ser XProportional,YProportional,WidthProportional.
+                 En futuras versiones se puede poner todo más dinámico creando Bindable properties
+                 para LayoutBounds y LayouFlags.
+            -->
+        <custom:HideWithAnimationButton  x:Name="buttonShowMovies"
+                                  AbsoluteLayout.LayoutBounds="0.5,1.2,1,-1" 
+                                  AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"
+                                  AbsoluteLayoutY="0.98"
+                                  TranslationInAbsoluteLayoutY="0.22"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="Center"
+                                     Margin="25,0,25,0"
+                                     Text="Ver Cartelera" 
+                                     Style="{StaticResource buttonStyle}">
+        </custom:HideWithAnimationButton>
+
+        <StackLayout x:Name="stacklayoutInMapMode"
+                         AbsoluteLayout.LayoutBounds="0.5,0.98,-1,-1" 
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         Orientation="Horizontal"
+                         HorizontalOptions="Center">
+
+            <custom:ImageButton
+                                x:Name="buttonCloseInMapMode"
+                                HeightRequest="80"
+                                Source="close_red.png">
+            </custom:ImageButton>
+
+            <custom:ImageButton
+                                x:Name="buttonOkInMapMode"
+                                HeightRequest="80"
+                                Source="ok_thumbs_up.png">
+            </custom:ImageButton>
+
+        </StackLayout>
+
+    </AbsoluteLayout>
 
 </base:BaseReactiveContentPage>

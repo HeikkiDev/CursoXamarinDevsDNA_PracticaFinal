@@ -1,6 +1,6 @@
 ﻿using Android.Content;
 using Android.Gms.Maps;
-using AppCursoXamarinDevsDNA.CustomControls.SelectPlaceMap;
+using AppCursoXamarinDevsDNA.CustomControls;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
