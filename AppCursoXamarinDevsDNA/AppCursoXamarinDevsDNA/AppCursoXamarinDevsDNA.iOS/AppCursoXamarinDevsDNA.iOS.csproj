@@ -92,6 +92,7 @@
     <Compile Include="CustomRenderers\SelectPlaceMapRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\GpsService.cs" />
     <Compile Include="Services\PlaceAutocompleteService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
