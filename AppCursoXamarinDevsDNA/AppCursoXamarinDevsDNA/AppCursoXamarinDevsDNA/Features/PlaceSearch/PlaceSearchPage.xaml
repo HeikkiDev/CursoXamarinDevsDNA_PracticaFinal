@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseReactiveContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:AppCursoXamarinDevsDNA.Base"
+             xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+             xmlns:custom="clr-namespace:AppCursoXamarinDevsDNA.CustomControls"
+             xmlns:behaviors="clr-namespace:AppCursoXamarinDevsDNA.Behaviors"
+             xmlns:converters="clr-namespace:AppCursoXamarinDevsDNA.Converters"
+             xmlns:placesearch="clr-namespace:AppCursoXamarinDevsDNA.Features.PlaceSearch"
+             x:TypeArguments="placesearch:PlaceSearchPageViewModel"
+             x:Class="AppCursoXamarinDevsDNA.Features.PlaceSearch.PlaceSearchPage"
+             Title="Place Search">
+
+    <base:BaseReactiveContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </base:BaseReactiveContentPage.Resources>
+
+    <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" AbsoluteLayout.LayoutFlags="All">
+
+        <StackLayout Orientation="Horizontal" Spacing="1">
+            <Image x:Name="imageBackButton"
+                       Source="back_icon.png"
+                       HeightRequest="20" 
+                       WidthRequest="20"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Margin="6,6,0,0">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackButtonCommand}" NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <custom:PlaceAutocompleteSearchBar x:Name="autocompleteSearchBar" 
+                                               FontSize="Small" 
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="FillAndExpand">
+
+            </custom:PlaceAutocompleteSearchBar>
+
+        </StackLayout>
+
+        <ListView 
+                    x:Name="listViewPlacesAutocomplete"
+                    SeparatorColor="#D3D3D3">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="ItemTapped" 
+                                      Command="{Binding ItemTappedCommand}"
+                                      Converter="{StaticResource itemTappedEventArgsConverter}"/>
+            </ListView.Behaviors>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Spacing="4" Margin="5,0,0,0">
+                            <Image Source="pin_place_black.png"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    HeightRequest="16" 
+                                    WidthRequest="16"/>
+
+                            <Label x:Name="labelCellDescription"
+                                   Text="{Binding Description}"
+                                   FontSize="10"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </StackLayout>
+
+</base:BaseReactiveContentPage>
