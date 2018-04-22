@@ -26,11 +26,8 @@ namespace AppCursoXamarinDevsDNA.CustomControls
 
         public SelectPlaceMap()
         {
-            _placeAutocompleteService = Locator.Current.GetService<IPlaceAutocompleteService>();
-        }
-        public SelectPlaceMap(IPlaceAutocompleteService placeAutocompleteService)
-        {
-            _placeAutocompleteService = placeAutocompleteService;
+            _placeAutocompleteService = DependencyService.Get<IPlaceAutocompleteService>();
+            this.PositionMap();
         }
 
         /// <summary>
@@ -211,7 +208,7 @@ namespace AppCursoXamarinDevsDNA.CustomControls
 
         public void PositionMap()
         {
-            if (CenterPosition != null)
+            if (CenterPosition != null && CenterPosition != default(Position))
             {
                 this.MoveToRegion(
                     MapSpan.FromCenterAndRadius(
@@ -225,7 +222,7 @@ namespace AppCursoXamarinDevsDNA.CustomControls
                 // Default position Madrid
                 this.MoveToRegion(
                     MapSpan.FromCenterAndRadius(
-                       new Position(40.4381311, -3.8196235),
+                       new Position(40.4160145, -3.7235761),
                        Distance.FromKilometers(3)
                     )
                 );

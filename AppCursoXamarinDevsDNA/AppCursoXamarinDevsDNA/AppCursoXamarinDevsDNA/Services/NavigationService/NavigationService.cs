@@ -23,19 +23,19 @@ namespace AppCursoXamarinDevsDNA.Services.NavigationService
             await Application.Current.MainPage.Navigation.PushAsync(page);
         }
 
-        public async Task PushModalTo(Page page, bool animated)
+        public async Task PushModalTo(Page page, bool animated = true)
         {
             await Application.Current.MainPage.Navigation.PushModalAsync(page, animated);
         }
 
-        public async Task Back()
+        public async Task<Page> Back()
         {
-            await Application.Current.MainPage.Navigation.PopAsync();
+            return await Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        public async Task BackModal(bool animated)
+        public async Task<Page> BackModal(bool animated = true)
         {
-            await Application.Current.MainPage.Navigation.PopModalAsync(animated);
+            return await Application.Current.MainPage.Navigation.PopModalAsync(animated);
         }
 
         public async Task BackToRoot()
