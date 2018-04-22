@@ -49,6 +49,8 @@ namespace AppCursoXamarinDevsDNA.Features.Login
         {
             IsBusy = true;
 
+            AppPropertiesService.Set("user_login_token", Email);
+
             //TODO: Hacer un check falso del email y password, y guardar email como token de inicio de sesión
             //Simular petición de Login
             await Task.Delay(3000);
