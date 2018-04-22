@@ -1,6 +1,7 @@
 ﻿using AppCursoXamarinDevsDNA.Base;
 using AppCursoXamarinDevsDNA.CustomControls;
 using AppCursoXamarinDevsDNA.Services.Analytics;
+using AppCursoXamarinDevsDNA.Services.Gps;
 using AppCursoXamarinDevsDNA.Services.NavigationService;
 using AppCursoXamarinDevsDNA.Services.PlaceAutocomplete;
 using ReactiveUI;
@@ -16,6 +17,8 @@ namespace AppCursoXamarinDevsDNA.Features.Main
 {
     public class MainPageViewModel : BaseViewModel
     {
+        private readonly IGpsService _gpsService;
+
         //private ReactiveCommand _toolbarItemCommand;
         //public ReactiveCommand ToolbarItemCommand => _toolbarItemCommand;
 
@@ -85,8 +88,15 @@ namespace AppCursoXamarinDevsDNA.Features.Main
         }
         #endregion
 
-        public MainPageViewModel()
+        public MainPageViewModel() : this(null)
         {
+
+        }
+
+        public MainPageViewModel(IGpsService gpsService)
+        {
+            _gpsService = gpsService ?? DependencyService.Get<IGpsService>();
+
             //_toolbarItemCommand = ReactiveCommand.Create(LogoutToolbarCommand);
             _navigateToPlaceSearchbarCommand = ReactiveCommand.CreateFromTask(NavigateToPlaceSearchbarAsync);
             _navigateToMoviesCommand = ReactiveCommand.CreateFromTask(NavigateToMoviesAsync);
@@ -95,7 +105,7 @@ namespace AppCursoXamarinDevsDNA.Features.Main
             _okMapSelectionCommand = ReactiveCommand.Create(OkMapSelectionAsync);
         }
 
-        public override void Load(NavigationParameters navigationParameters)
+        public override async void Load(NavigationParameters navigationParameters)
         {
             base.Load(navigationParameters);
 
@@ -103,8 +113,14 @@ namespace AppCursoXamarinDevsDNA.Features.Main
             {
                 IsMapSelectionEnable = false;
                 TextSearched = "Busque aquí";
+                
+                bool permissionsGranted = await _gpsService.GetPermissionsAsync();
 
-                //CenterPosition = await _geoLocationService.GetDeviceCoordinates();
+                if (permissionsGranted)
+                {
+                    Coordinates coordinates = await _gpsService.GetCurrentPositionAsync();
+                    CenterPosition = new Position(coordinates.Latitude, coordinates.Longitude);
+                }
             }
             catch (Exception ex)
             {
