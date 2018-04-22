@@ -18,7 +18,11 @@ namespace AppCursoXamarinDevsDNA.Features.Login
             base.CreateBindings(d);
 
             d(this.OneWayBind(ViewModel, vm => vm.IsBusy, v => v.entryUser.IsEnabled, (isEnabled) => !isEnabled));
+            d(this.Bind(ViewModel, vm => vm.Usuario, v => v.entryUser.Text));
+
             d(this.OneWayBind(ViewModel, vm => vm.IsBusy, v => v.entryPassword.IsEnabled, (isEnabled) => !isEnabled));
+            d(this.Bind(ViewModel, vm => vm.Password, v => v.entryPassword.Text));
+
             d(this.OneWayBind(ViewModel, vm => vm.IsLoginErrorLabelVisible, v => v.labelWrongUserOrPass.IsVisibleCustom));
             d(this.OneWayBind(ViewModel, vm => vm.IsBusy, v => v.activityIndicator.IsRunning));
             d(this.OneWayBind(ViewModel, vm => vm.IsBusy, v => v.buttonLogin.IsEnabled, (isEnabled) => !isEnabled));

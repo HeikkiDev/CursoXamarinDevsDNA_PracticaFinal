@@ -23,7 +23,7 @@
     </base:BaseReactiveContentPage.Resources>
 
     <AbsoluteLayout>
-        <Grid AbsoluteLayout.LayoutBounds="0.5,0.5,1,-1"  AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
+        <Grid Margin="5" AbsoluteLayout.LayoutBounds="0.5,0.5,1,-1"  AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />

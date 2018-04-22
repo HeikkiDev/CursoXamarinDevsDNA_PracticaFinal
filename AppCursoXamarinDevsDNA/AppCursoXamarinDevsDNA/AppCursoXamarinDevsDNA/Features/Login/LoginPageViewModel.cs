@@ -2,6 +2,7 @@
 using AppCursoXamarinDevsDNA.Services.Analytics;
 using AppCursoXamarinDevsDNA.Services.NavigationService;
 using ReactiveUI;
+using Splat;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,14 +10,16 @@ namespace AppCursoXamarinDevsDNA.Features.Login
 {
     public class LoginPageViewModel : BaseViewModel
     {
+        private readonly ILoginService _loginService;
+
         private ReactiveCommand _loginButtonCommand;
         public ReactiveCommand LoginButtonCommand => _loginButtonCommand;
 
-        private string _email;
-        public string Email
+        private string _usuario;
+        public string Usuario
         {
-            get => _email;
-            set => this.RaiseAndSetIfChanged(ref _email, value);
+            get => _usuario;
+            set => this.RaiseAndSetIfChanged(ref _usuario, value);
         }
 
         private string _password;
@@ -33,9 +36,22 @@ namespace AppCursoXamarinDevsDNA.Features.Login
             set => this.RaiseAndSetIfChanged(ref _isLoginErrorLabelVisible, value);
         }
 
-        public LoginPageViewModel()
+        public LoginPageViewModel():this(null)
         {
-            _loginButtonCommand = ReactiveCommand.CreateFromTask(LoginButtonTappedAsync);
+            // Constructor vacío para instanciar con la herramienta de reflection de Utils
+        }
+
+        public LoginPageViewModel(ILoginService loginService)
+        {
+            _loginService = loginService ?? Locator.Current.GetService<ILoginService>();
+
+            // Para deshabilitar el botón de Login si el Usuario o la Password están vacíos
+            var canExecute = this.WhenAnyValue(
+                                            vm => vm.Usuario,
+                                            vm => vm.Password,
+                                            (e, p) => !string.IsNullOrEmpty(e) && !string.IsNullOrEmpty(p));
+
+            _loginButtonCommand = ReactiveCommand.CreateFromTask(LoginButtonTappedAsync, canExecute);
         }
 
         public override void Load(NavigationParameters navigationParameters)
@@ -47,19 +63,27 @@ namespace AppCursoXamarinDevsDNA.Features.Login
 
         private async Task LoginButtonTappedAsync()
         {
+            IsLoginErrorLabelVisible = false;
             IsBusy = true;
 
-            AppPropertiesService.Set("user_login_token", Email);
+            bool loginResult = await _loginService.LoginWithUserAndPassword(Usuario, Password);
 
-            //TODO: Hacer un check falso del email y password, y guardar email como token de inicio de sesión
-            //Simular petición de Login
-            await Task.Delay(3000);
+            if (loginResult)
+            {
+                AppPropertiesService.Set("user_login_token", Usuario);
 
-            AnalyticsService.TrackEvent(AppCenterEvents.USER_LOG_IN, new Dictionary<string, string> {
-                        { "userId", Email }
+                AnalyticsService.TrackEvent(AppCenterEvents.USER_LOG_IN, new Dictionary<string, string> {
+                        { "userId", Usuario }
                   });
 
-            NavigationService.SetMainPage(new MainPage());
+                NavigationService.SetMainPage(new MainPage());
+            }
+            else
+            {
+                IsLoginErrorLabelVisible = true;
+            }
+
+            IsBusy = false;
         }
     }
 }
