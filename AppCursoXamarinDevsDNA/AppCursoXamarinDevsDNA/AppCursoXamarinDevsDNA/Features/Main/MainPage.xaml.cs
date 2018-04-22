@@ -18,11 +18,14 @@ namespace AppCursoXamarinDevsDNA
         {
             base.CreateBindings(d);
 
-            d(this.OneWayBind(ViewModel, vm => vm.CenterPosition, v => v.selectPlaceMap.CenterPosition));
-            d(this.OneWayBind(ViewModel, vm => vm.CurrentPinPlace, v => v.selectPlaceMap.PinPlace));
-            d(this.OneWayBind(ViewModel, vm => vm.CurrentPinPlaceDetails, v => v.selectPlaceMap.PinPlaceDetails));
-            d(this.Bind(ViewModel, vm => vm.SelectionType, v => v.selectPlaceMap.PinSelectionType));
-            d(this.Bind(ViewModel, vm => vm.MapTappedCommand, v => v.selectPlaceMap.MapClickCommand));
+            //TODO: Ver cómo hacer el Binding al ToolbarItem, me está fallando
+            //d(this.BindCommand(ViewModel, vm => vm.ToolbarItemCommand, v => v.logoutToolbar));
+
+            d(this.OneWayBind(ViewModel, vm => vm.CenterPosition, v => v.mapSelectPlace.CenterPosition));
+            d(this.OneWayBind(ViewModel, vm => vm.CurrentPinPlace, v => v.mapSelectPlace.PinPlace));
+            d(this.OneWayBind(ViewModel, vm => vm.CurrentPinPlaceDetails, v => v.mapSelectPlace.PinPlaceDetails));
+            d(this.Bind(ViewModel, vm => vm.SelectionType, v => v.mapSelectPlace.PinSelectionType));
+            d(this.OneWayBind(ViewModel, vm => vm.MapTappedCommand, v => v.mapSelectPlace.MapClickCommand));
 
             d(this.OneWayBind(ViewModel, vm => vm.IsMapSelectionEnable, v => v.frameSearchMode.IsVisible, (isVisible) => !isVisible));
 

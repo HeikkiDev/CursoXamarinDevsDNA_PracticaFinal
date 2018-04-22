@@ -6,12 +6,17 @@
              xmlns:custom="clr-namespace:AppCursoXamarinDevsDNA.CustomControls"
              xmlns:main="clr-namespace:AppCursoXamarinDevsDNA.Features.Main"
              x:TypeArguments="main:MainPageViewModel"
-             x:Class="AppCursoXamarinDevsDNA.MainPage">
+             x:Class="AppCursoXamarinDevsDNA.MainPage"
+             Title="Cinema App">
+
+    <base:BaseReactiveContentPage.ToolbarItems>
+        <ToolbarItem x:Name="logoutToolbar" Name="Logout" Order="Primary" Icon="logout.png" Text="Logout" Priority="0" Command="{Binding LogoutToolbarItemCommand}" CommandParameter="1" />
+    </base:BaseReactiveContentPage.ToolbarItems>
 
     <base:BaseReactiveContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="labelTitleSearchStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="13" />
+                <Setter Property="FontSize" Value="11" />
                 <Setter Property="TextColor" Value="#3C3C3D" />
             </Style>
         </ResourceDictionary>
@@ -99,7 +104,7 @@
                                      HorizontalOptions="FillAndExpand"
                                      VerticalOptions="Center"
                                      Margin="25,0,25,0"
-                                     Text="Ver Cartelera" 
+                                     Text="Ver cines por aquí" 
                                      Style="{StaticResource buttonStyle}">
         </custom:HideWithAnimationButton>
 
@@ -111,13 +116,13 @@
 
             <custom:ImageButton
                                 x:Name="buttonCloseInMapMode"
-                                HeightRequest="80"
+                                HeightRequest="65"
                                 Source="close_red.png">
             </custom:ImageButton>
 
             <custom:ImageButton
                                 x:Name="buttonOkInMapMode"
-                                HeightRequest="80"
+                                HeightRequest="65"
                                 Source="ok_thumbs_up.png">
             </custom:ImageButton>
 
