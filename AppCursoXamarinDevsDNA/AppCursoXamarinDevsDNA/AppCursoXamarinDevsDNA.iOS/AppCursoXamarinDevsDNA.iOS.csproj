@@ -157,5 +157,14 @@
   <ItemGroup>
     <BundleResource Include="Resources\search.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\back_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pin_place_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
