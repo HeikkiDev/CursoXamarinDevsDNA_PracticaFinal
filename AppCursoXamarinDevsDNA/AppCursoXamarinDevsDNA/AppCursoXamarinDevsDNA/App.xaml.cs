@@ -42,6 +42,7 @@ namespace AppCursoXamarinDevsDNA
             Splat.Locator.CurrentMutable.Register(() => new NavigationService(), typeof(INavigationService));
             Splat.Locator.CurrentMutable.Register(() => new AnalyticsService(), typeof(IAnalyticsService));
             Splat.Locator.CurrentMutable.Register(() => new AppPropertiesService(), typeof(IAppPropertiesService));
+            Splat.Locator.CurrentMutable.Register(() => new Features.Login.LoginService(), typeof(Features.Login.ILoginService));
         }
 
         /// <summary>
