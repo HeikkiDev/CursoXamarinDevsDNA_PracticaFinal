@@ -3,11 +3,14 @@ using AppCursoXamarinDevsDNA.Services.AppProperties;
 using AppCursoXamarinDevsDNA.Services.NavigationService;
 using ReactiveUI;
 using Splat;
+using System;
 
 namespace AppCursoXamarinDevsDNA.Base
 {
     public abstract class BaseViewModel : ReactiveObject
     {
+        public event EventHandler<NavigationParameters> BackNavigation;
+
         private readonly INavigationService _navigationService;
         private readonly IAnalyticsService _analyticsService;
         private readonly IAppPropertiesService _appPropertiesService;
@@ -44,6 +47,11 @@ namespace AppCursoXamarinDevsDNA.Base
         public virtual void Load(NavigationParameters navigationParameters)
         {
 
+        }
+
+        public void NavigateBack(NavigationParameters navigationParameters)
+        {
+            BackNavigation(this, navigationParameters);
         }
     }
 }
