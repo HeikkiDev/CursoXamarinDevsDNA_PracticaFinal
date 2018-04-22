@@ -25,11 +25,6 @@ namespace AppCursoXamarinDevsDNA.Droid.Services
         private TaskCompletionSource<Coordinates> tcs;
         private TaskCompletionSource<bool> tcsPermissions;
 
-        //public IntPtr Handle
-        //{
-        //    get { return default(IntPtr); }
-        //}
-
         public Task<bool> GetPermissionsAsync()
         {
             tcsPermissions = new TaskCompletionSource<bool>();
