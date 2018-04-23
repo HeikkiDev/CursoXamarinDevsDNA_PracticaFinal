@@ -70,6 +70,8 @@ namespace AppCursoXamarinDevsDNA.Droid.Services
                 else
                     tcs.SetResult(default(Coordinates));
             }
+            else
+                tcs.SetResult(default(Coordinates));
 
             return tcs.Task;
         }

@@ -50,8 +50,10 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>AppCursoXamarinDevsDNA</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>This app needs access location to use with maps.</string>
   <key>NSLocationAlwaysUsageDescription</key>
-  <string>Can we use your location</string>
+  <string>This app needs access location to use with maps.</string>
   <key>NSLocationWhenInUseUsageDescription</key>
   <string>We are using your location</string>
 </dict>

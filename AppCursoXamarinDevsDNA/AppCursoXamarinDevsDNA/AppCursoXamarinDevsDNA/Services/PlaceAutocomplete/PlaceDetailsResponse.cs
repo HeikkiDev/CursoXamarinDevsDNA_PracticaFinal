@@ -6,6 +6,10 @@ namespace AppCursoXamarinDevsDNA.Services.PlaceAutocomplete
 {
     public class PlaceDetailsResponse
     {
+        // For iOS search details
+        public string ID { get; set; }
+        public string Place_ID { get; set; }
+
         public Result result { get; set; }
         public string status { get; set; }
 
