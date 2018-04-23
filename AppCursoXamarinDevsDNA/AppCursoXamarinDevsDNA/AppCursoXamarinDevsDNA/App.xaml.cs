@@ -10,6 +10,7 @@ using AppCursoXamarinDevsDNA.Services.Analytics;
 using AppCursoXamarinDevsDNA.Services.AppProperties;
 using ReactiveUI;
 using Splat;
+using AppCursoXamarinDevsDNA.Services.NearbyCinemas;
 
 namespace AppCursoXamarinDevsDNA
 {
@@ -43,6 +44,7 @@ namespace AppCursoXamarinDevsDNA
             Splat.Locator.CurrentMutable.Register(() => new AnalyticsService(), typeof(IAnalyticsService));
             Splat.Locator.CurrentMutable.Register(() => new AppPropertiesService(), typeof(IAppPropertiesService));
             Splat.Locator.CurrentMutable.Register(() => new Features.Login.LoginService(), typeof(Features.Login.ILoginService));
+            Splat.Locator.CurrentMutable.Register(() => new NearbyCinemasService(), typeof(INearbyCinemasService));
         }
 
         /// <summary>
