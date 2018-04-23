@@ -88,6 +88,10 @@ namespace AppCursoXamarinDevsDNA.CustomControls
                         else
                             ExecuteAutocompleteCommand(new List<AutocompletePlace>());
                     }
+                    catch (ObjectDisposedException)
+                    {
+                        //
+                    }
                     catch (OperationCanceledException)
                     {
                         // if the operation is cancelled, do nothing

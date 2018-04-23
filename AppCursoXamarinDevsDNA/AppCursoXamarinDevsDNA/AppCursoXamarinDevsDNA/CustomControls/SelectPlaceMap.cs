@@ -198,6 +198,9 @@ namespace AppCursoXamarinDevsDNA.CustomControls
                         }
                     }
                 };
+
+                if (this.MapClickCommand != null && this.MapClickCommand.CanExecute(true))
+                    this.MapClickCommand.Execute(true);
             }
             else
             {
