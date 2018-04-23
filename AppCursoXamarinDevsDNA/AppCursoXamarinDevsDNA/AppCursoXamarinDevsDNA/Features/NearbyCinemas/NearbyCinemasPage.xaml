@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseReactiveContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:AppCursoXamarinDevsDNA.Base"
+             xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+             xmlns:behaviors="clr-namespace:AppCursoXamarinDevsDNA.Behaviors"
+             xmlns:converters="clr-namespace:AppCursoXamarinDevsDNA.Converters"
+             xmlns:cinemas="clr-namespace:AppCursoXamarinDevsDNA.Features.NearbyCinemas"
+             x:TypeArguments="cinemas:NearbyCinemasPageViewModel"
+             x:Class="AppCursoXamarinDevsDNA.Features.NearbyCinemas.NearbyCinemasPage"
+             Title="Nearby Cinemas">
+
+    <base:BaseReactiveContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </base:BaseReactiveContentPage.Resources>
+
+    <ListView 
+            x:Name="listViewNearbyCinemas"
+            SeparatorColor="#D3D3D3"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True">
+
+        <ListView.Behaviors>
+            <behaviors:EventToCommandBehavior EventName="ItemTapped" 
+                                      Command="{Binding ItemTappedCommand}"
+                                      Converter="{StaticResource itemTappedEventArgsConverter}"/>
+        </ListView.Behaviors>
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="7*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"
+                                    Source="cine.png"
+                                    VerticalOptions="Center"
+                                    HeightRequest="30"/>
+
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <Label
+                                   Text="{Binding Name}"
+                                   LineBreakMode="TailTruncation"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+
+                            <Label
+                                   Text="{Binding Adress}"
+                                   LineBreakMode="TailTruncation"
+                                   FontSize="12"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+
+                            <Label
+                                   Text="{Binding Phone}"
+                                   LineBreakMode="TailTruncation"
+                                   FontSize="12"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+
+                    </Grid>
+
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+
+</base:BaseReactiveContentPage>
