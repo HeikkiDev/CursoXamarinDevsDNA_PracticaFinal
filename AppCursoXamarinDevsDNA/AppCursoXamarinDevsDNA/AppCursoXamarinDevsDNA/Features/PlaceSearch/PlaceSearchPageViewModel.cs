@@ -81,6 +81,8 @@ namespace AppCursoXamarinDevsDNA.Features.PlaceSearch
               NavigationParameters navigatonParameters = new NavigationParameters();
               navigatonParameters.Add("place-selected", place);
 
+              SelectedItem = null;
+
               this.NavigateBack(navigatonParameters);
           }));
         #endregion

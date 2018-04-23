@@ -212,9 +212,11 @@ namespace AppCursoXamarinDevsDNA.Features.Main
         private async Task NavigateToMoviesAsync()
         {
             NavigationParameters navigationParameters = new NavigationParameters();
-            navigationParameters.Add(DetailPage.NavigationKeys.DETAIL_TEXT, "Texto asignado desde Load!!");
+            var lat = CurrentPinPlaceDetails.result.geometry.location.lat;
+            var lng = CurrentPinPlaceDetails.result.geometry.location.lng;
+            navigationParameters.Add(NearbyCinemas.NavigationKeys.MAP_POSITION, new Position(lat, lng));
 
-            var page = new DetailPage.DetailPage(navigationParameters);
+            var page = new NearbyCinemas.NearbyCinemasPage(navigationParameters);
             await NavigationService.PushTo(page);
         }
 

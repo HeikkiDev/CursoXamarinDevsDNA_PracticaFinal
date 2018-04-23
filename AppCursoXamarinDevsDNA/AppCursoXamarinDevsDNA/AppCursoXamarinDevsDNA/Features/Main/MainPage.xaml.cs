@@ -23,7 +23,7 @@ namespace AppCursoXamarinDevsDNA
 
             d(this.OneWayBind(ViewModel, vm => vm.CenterPosition, v => v.mapSelectPlace.CenterPosition));
             d(this.OneWayBind(ViewModel, vm => vm.CurrentPinPlace, v => v.mapSelectPlace.PinPlace));
-            d(this.OneWayBind(ViewModel, vm => vm.CurrentPinPlaceDetails, v => v.mapSelectPlace.PinPlaceDetails));
+            d(this.Bind(ViewModel, vm => vm.CurrentPinPlaceDetails, v => v.mapSelectPlace.PinPlaceDetails));
             d(this.Bind(ViewModel, vm => vm.SelectionType, v => v.mapSelectPlace.PinSelectionType));
             d(this.OneWayBind(ViewModel, vm => vm.MapTappedCommand, v => v.mapSelectPlace.MapClickCommand));
 
