@@ -167,5 +167,8 @@
   <ItemGroup>
     <BundleResource Include="Resources\logout.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cine.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
