@@ -52,6 +52,13 @@ namespace AppCursoXamarinDevsDNA.Features.Main
             set { this.RaiseAndSetIfChanged(ref _isMapSelectionEnable, value); }
         }
 
+        private bool _isEnabledOkMapSelection;
+        public bool IsEnabledOkMapSelection
+        {
+            get { return _isEnabledOkMapSelection; }
+            set { this.RaiseAndSetIfChanged(ref _isEnabledOkMapSelection, value); }
+        }
+
         private bool _isVisibleShowMoviesButton;
         public bool IsVisibleShowMoviesButton
         {
@@ -189,6 +196,7 @@ namespace AppCursoXamarinDevsDNA.Features.Main
                     SelectionType = CustomControls.SelectPlaceMap.SelectionType.IN_MAP;
                     IsVisibleShowMoviesButton = false;
                     IsMapSelectionEnable = true;
+                    IsEnabledOkMapSelection = false;
                     TextSearched = "Busque aquí"; // Reset search text
                 }
                 else
@@ -214,21 +222,14 @@ namespace AppCursoXamarinDevsDNA.Features.Main
         {
             if ((bool)isMapSelectionEnalbeOnTap)
             {
-                IsMapSelectionEnable = false;
-                IsVisibleShowMoviesButton = true;
-                TextSearched = "Busque aquí"; // Reset search text
+                IsEnabledOkMapSelection = true;
             }
             else
             {
                 IsVisibleShowMoviesButton = false;
+                IsEnabledOkMapSelection = false;
                 CurrentPinPlace = null; // Remove Pin
                 TextSearched = "Busque aquí"; // Reset search text
-            }
-
-            if (SelectionType == SelectPlaceMap.SelectionType.IN_MAP)
-            {
-                // Reset selection type
-                SelectionType = SelectPlaceMap.SelectionType.SEARCHBAR;
             }
         }
 
@@ -241,10 +242,13 @@ namespace AppCursoXamarinDevsDNA.Features.Main
 
         private void OkMapSelectionAsync()
         {
-            SelectionType = SelectPlaceMap.SelectionType.SEARCHBAR;
-            IsMapSelectionEnable = false;
-            IsVisibleShowMoviesButton = true;
-            TextSearched = "Busque aquí"; // Reset search text
+            if (IsEnabledOkMapSelection)
+            {
+                SelectionType = SelectPlaceMap.SelectionType.SEARCHBAR;
+                IsMapSelectionEnable = false;
+                IsVisibleShowMoviesButton = true;
+                TextSearched = "Busque aquí"; // Reset search text
+            }
         }
         #endregion
     }

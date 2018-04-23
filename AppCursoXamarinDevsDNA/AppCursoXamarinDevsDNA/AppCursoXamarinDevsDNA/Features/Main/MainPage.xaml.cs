@@ -45,6 +45,7 @@ namespace AppCursoXamarinDevsDNA
 
             d(this.BindCommand(ViewModel, vm => vm.CloseMapSelectionCommand, v => v.buttonCloseInMapMode));
             d(this.BindCommand(ViewModel, vm => vm.OkMapSelectionCommand, v => v.buttonOkInMapMode));
+            d(this.OneWayBind(ViewModel, vm => vm.IsEnabledOkMapSelection, v => v.buttonOkInMapMode.IsEnabled));
         }
     }
 }
