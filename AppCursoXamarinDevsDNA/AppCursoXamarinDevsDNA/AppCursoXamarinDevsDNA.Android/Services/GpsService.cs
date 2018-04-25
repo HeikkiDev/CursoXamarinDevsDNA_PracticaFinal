@@ -15,7 +15,7 @@ using Plugin.CurrentActivity;
 [assembly: Xamarin.Forms.Dependency(typeof(AppCursoXamarinDevsDNA.Droid.Services.GpsService))]
 namespace AppCursoXamarinDevsDNA.Droid.Services
 {
-    public class GpsService : Java.Lang.Object, IGpsService, ActivityCompat.IOnRequestPermissionsResultCallback
+    public class GpsService : Java.Lang.Object, IGpsService
     {
         private const int LOCATION_PERMISSION_ID = 2;
         private string[] permissions = { Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation };
@@ -76,24 +76,17 @@ namespace AppCursoXamarinDevsDNA.Droid.Services
             return tcs.Task;
         }
 
-        public void OnRequestPermissionsResult(int requestCode, string[] permissions, [Android.Runtime.GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public void OnRequestPermissionsResult(bool isGranted)
         {
-            switch (requestCode)
+            if (isGranted)
             {
-                case LOCATION_PERMISSION_ID:
-                    {
-                        if (grantResults[0] == Permission.Granted)
-                        {
-                            //Permission granted
-                            tcsPermissions.TrySetResult(true);
-                        }
-                        else
-                        {
-                            //Permission Denied :(
-                            tcsPermissions.TrySetResult(false);
-                        }
-                    }
-                    break;
+                //Permission granted
+                tcsPermissions.TrySetResult(true);
+            }
+            else
+            {
+                //Permission Denied :(
+                tcsPermissions.TrySetResult(false);
             }
         }
 

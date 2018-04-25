@@ -9,5 +9,6 @@ namespace AppCursoXamarinDevsDNA.Services.Gps
     {
         Task<bool> GetPermissionsAsync();
         Task<Coordinates> GetCurrentPositionAsync();
+        void OnRequestPermissionsResult(bool isGranted);
     }
 }

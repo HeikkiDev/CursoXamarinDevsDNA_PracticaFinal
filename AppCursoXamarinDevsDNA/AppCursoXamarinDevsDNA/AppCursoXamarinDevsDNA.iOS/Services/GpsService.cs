@@ -81,5 +81,11 @@ namespace AppCursoXamarinDevsDNA.iOS.Services
 
             tcs.TrySetResult(currentPosition);
         }
+
+        // Only for Android Permissions
+        public void OnRequestPermissionsResult(bool isGranted)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
