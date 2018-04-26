@@ -5,6 +5,7 @@ using AppCursoXamarinDevsDNA.Services.NavigationService;
 using ReactiveUI;
 using Splat;
 using System.Collections.Generic;
+using System.Reactive;
 using System.Threading.Tasks;
 
 namespace AppCursoXamarinDevsDNA.Features.Login
@@ -13,8 +14,8 @@ namespace AppCursoXamarinDevsDNA.Features.Login
     {
         private readonly ILoginService _loginService;
 
-        private ReactiveCommand _loginButtonCommand;
-        public ReactiveCommand LoginButtonCommand => _loginButtonCommand;
+        private ReactiveCommand<Unit, Unit> _loginButtonCommand;
+        public ReactiveCommand<Unit, Unit> LoginButtonCommand => _loginButtonCommand;
 
         private string _usuario;
         public string Usuario
