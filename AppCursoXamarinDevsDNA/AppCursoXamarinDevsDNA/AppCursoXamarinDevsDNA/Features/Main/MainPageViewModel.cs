@@ -1,6 +1,7 @@
 ﻿using AppCursoXamarinDevsDNA.Base;
 using AppCursoXamarinDevsDNA.CustomControls;
 using AppCursoXamarinDevsDNA.Services.Analytics;
+using AppCursoXamarinDevsDNA.Services.AppProperties;
 using AppCursoXamarinDevsDNA.Services.Gps;
 using AppCursoXamarinDevsDNA.Services.NavigationService;
 using AppCursoXamarinDevsDNA.Services.PlaceAutocomplete;
@@ -95,12 +96,13 @@ namespace AppCursoXamarinDevsDNA.Features.Main
         }
         #endregion
 
-        public MainPageViewModel() : this(null)
+        public MainPageViewModel() : this(null, null, null, null)
         {
 
         }
 
-        public MainPageViewModel(IGpsService gpsService)
+        public MainPageViewModel(INavigationService navigationService, IAnalyticsService analyticsService, IAppPropertiesService appPropertiesService, IGpsService gpsService)
+            : base(navigationService, analyticsService, appPropertiesService)
         {
             _gpsService = gpsService ?? DependencyService.Get<IGpsService>();
 

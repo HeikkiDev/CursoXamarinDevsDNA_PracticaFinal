@@ -1,4 +1,6 @@
 ﻿using AppCursoXamarinDevsDNA.Base;
+using AppCursoXamarinDevsDNA.Services.Analytics;
+using AppCursoXamarinDevsDNA.Services.AppProperties;
 using AppCursoXamarinDevsDNA.Services.NavigationService;
 using AppCursoXamarinDevsDNA.Services.NearbyCinemas;
 using ReactiveUI;
@@ -39,12 +41,13 @@ namespace AppCursoXamarinDevsDNA.Features.NearbyCinemas
         }
         #endregion
 
-        public NearbyCinemasPageViewModel() : this(null)
+        public NearbyCinemasPageViewModel() : this(null,null,null,null)
         {
 
         }
 
-        public NearbyCinemasPageViewModel(INearbyCinemasService nearbyCinemasService)
+        public NearbyCinemasPageViewModel(INavigationService navigationService, IAnalyticsService analyticsService, IAppPropertiesService appPropertiesService, INearbyCinemasService nearbyCinemasService)
+            : base(navigationService, analyticsService, appPropertiesService)
         {
             _nearbyCinemasService = nearbyCinemasService ?? Locator.Current.GetService<INearbyCinemasService>();
         }

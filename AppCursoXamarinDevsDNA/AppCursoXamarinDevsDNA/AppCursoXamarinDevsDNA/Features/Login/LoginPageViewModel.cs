@@ -1,5 +1,6 @@
 ﻿using AppCursoXamarinDevsDNA.Base;
 using AppCursoXamarinDevsDNA.Services.Analytics;
+using AppCursoXamarinDevsDNA.Services.AppProperties;
 using AppCursoXamarinDevsDNA.Services.NavigationService;
 using ReactiveUI;
 using Splat;
@@ -36,12 +37,13 @@ namespace AppCursoXamarinDevsDNA.Features.Login
             set => this.RaiseAndSetIfChanged(ref _isLoginErrorLabelVisible, value);
         }
 
-        public LoginPageViewModel():this(null)
+        public LoginPageViewModel(): this(null, null, null, null)
         {
             // Constructor vacío para instanciar con la herramienta de reflection de Utils
         }
 
-        public LoginPageViewModel(ILoginService loginService)
+        public LoginPageViewModel(INavigationService navigationService, IAnalyticsService analyticsService, IAppPropertiesService appPropertiesService, ILoginService loginService)
+            :base(navigationService, analyticsService, appPropertiesService)
         {
             _loginService = loginService ?? Locator.Current.GetService<ILoginService>();
 

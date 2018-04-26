@@ -8,6 +8,8 @@ using ReactiveUI;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using AppCursoXamarinDevsDNA.Services.Analytics;
+using AppCursoXamarinDevsDNA.Services.AppProperties;
 
 namespace AppCursoXamarinDevsDNA.Features.PlaceSearch
 {
@@ -38,7 +40,13 @@ namespace AppCursoXamarinDevsDNA.Features.PlaceSearch
         }
         #endregion
 
-        public PlaceSearchPageViewModel()
+        public PlaceSearchPageViewModel() : this(null, null, null)
+        {
+
+        }
+
+        public PlaceSearchPageViewModel(INavigationService navigationService, IAnalyticsService analyticsService, IAppPropertiesService appPropertiesService)
+            : base(navigationService, analyticsService, appPropertiesService)
         {
             _backButtonCommand = ReactiveCommand.Create(BackButtonCommandAsync);
             _autoCompletePlacesCommand = ReactiveCommand.Create<object>(param => AutoCompletePlaces(param));
